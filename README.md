@@ -1,1 +1,1 @@
-# Uneb_2026
+# Computação UNEB_2026
