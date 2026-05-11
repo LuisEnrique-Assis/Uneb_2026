@@ -1,0 +1,18 @@
+# Projeto Otto DIY – Montagem e Calibragem
+
+Este projeto apresenta a montagem e calibragem do robô Otto DIY, um robô educacional desenvolvido com Arduino que possui movimentos interativos e funções programáveis. O objetivo do projeto foi compreender na prática conceitos de eletrônica, automação e programação, realizando desde a montagem física dos componentes até a configuração e ajuste dos movimentos do robô.
+
+Durante o desenvolvimento foram utilizados componentes como Arduino Nano, servomotores, sensor ultrassônico, buzzer e estrutura impressa em 3D. Após a montagem, foi realizada a etapa de calibragem dos servos para garantir o alinhamento correto dos movimentos, proporcionando melhor estabilidade e funcionamento do Otto.
+
+O projeto também envolve programação em linguagem C/C++ utilizando a IDE do Arduino, permitindo que o robô execute ações como andar, desviar de obstáculos, emitir sons e realizar movimentos personalizados.
+
+## Conteúdo do Projeto
+
+* Montagem do Otto DIY
+* Ligações elétricas dos componentes
+* Calibragem dos servomotores
+* Programação do Arduino
+* Testes de funcionamento
+* Demonstração dos movimentos do robô
+
+Este repositório foi desenvolvido com finalidade acadêmica e prática, buscando aplicar conhecimentos de robótica, automação e programação embarcada.
