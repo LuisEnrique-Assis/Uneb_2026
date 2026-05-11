@@ -15,7 +15,7 @@ long ultrasound() {
    delayMicroseconds(2);
    digitalWrite(Trigger, HIGH);
    delayMicroseconds(10);
-   digitalWrite(Trigger, LOW);
+   digitalWrite(Trigger, LOW);      
    duration = pulseIn(Echo, HIGH);
    distance = duration/58;
    return distance;
