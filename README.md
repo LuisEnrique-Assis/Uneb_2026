@@ -1,6 +1,12 @@
 ## Computação UNEB_2026
 # 🤖 Otto DIY – Relatório de Montagem e Calibragem
 
+## Relatório de Montagem e Calibragem 
+https://www.overleaf.com/project/6a00b4a42f3edbd318bf6a92
+
+## Apresentação de Resultados
+https://www.overleaf.com/project/69ff19f542512c82cfcd6c7d
+
 ## 📌 Descrição do Projeto
 
 Este repositório contém o relatório completo do projeto Otto DIY, apresentando o processo de montagem, configuração, programação e calibragem do robô. O objetivo do projeto foi aplicar conhecimentos de robótica, eletrônica e programação de forma prática e organizada.
