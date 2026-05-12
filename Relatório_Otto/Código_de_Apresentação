@@ -1,0 +1,239 @@
+%%%% PREÂMBULO %%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper]{article} %tamanho da fonte 12pts, papel A4 e duas coluna (twocolumn).
+\usepackage[brazil]{babel} %traduz o documento para o português do Brasil.
+\usepackage[utf8]{inputenc} %pacote reconhece acentuação em português
+\usepackage[left=3cm,top=2cm,right=1.5cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{gensymb}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{minted}
+\usepackage{textcomp,gensymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{textcomp,gensymb}
+\usepackage{listings}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+%%%%%%% CORPO DO TRABALHO  %%%%%%%
+
+\begin{document}
+\begin{titlepage}
+	
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.9]{Figuras/logouneb.png}
+	\label{logouneb}
+\end{figure}
+
+\begin{center} 
+	\textbf{UNIVERSIDADE DO ESTADO DA BAHIA - UNEB\\
+		DEPARTAMENTO DE CIÊNCIAS EXATAS E DA TERRA
+		I}\\\vspace{6cm}
+	\textbf{RELATÓRIO - OTTO}\\\vspace{4cm} %especificar melhor o título
+    
+\hfill
+\begin{minipage}{8cm}
+Trabalho apresentado a UNEB Para obtenção de nota na disciplina Informática Aplicada à Produção.
+\end{minipage}
+	
+	\begin{flushleft}
+		\textbf{Discentes:} Manuela Nascimento, Fábio Braga, Lucas Santos, Luís Damasceno\\
+            {Orientador:} Prof° Dr° Robson Marinho
+		
+		\vspace{5cm}
+		
+	\end{flushleft}
+	Salvador\\
+	2026
+\end{center}
+\end{titlepage}
+
+\newpage %Leva a introdução para uma nova página
+\tableofcontents
+\newpage
+\section{INTRODUÇÃO}
+Este relatório tem como objetivo descrever o processo de montagem do robô Otto, utilizando como base a apostila Eletrogate. O projeto envolve conceitos de eletrônica, programação e montagem mecânica, proporcionando uma experiência prática no desenvolvimento de sistemas robóticos. 
+A atividade permite compreender o funcionamento de componentes como sensores, servomotores e microcontroladores, além de desenvolver habilidades na área de tecnologia e automação. 
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\
+\section{OBJETIVO}
+\subsection{OBJETIVO GERAL}
+Montar e programar o robô Otto
+\subsection{OBJETIVOS ESPECÍFICOS}
+\begin{itemize}
+    \item Realizar a montagem estrutural do robô  
+    \item Fazer as conexões elétricas corretamente
+    \item Programar o Arduíno para funcionamento do robô
+    \item Testar e ajustar o sistema 
+    \end{itemize}
+\hspace{0,5cm} \\
+\section{MATERIAIS UTILIZADOS}
+\begin{itemize}
+    \item Arduino Nano  
+    \item Shield de expansão  
+    \item Sensor ultrassônico HC-SR04  
+    \item 4 micro servos SG90
+    \item Buzzer 
+    \item Jumpers 
+    \item Regulador de tensão
+    \item Capacitores eletrolíticos  
+    \item Chassi (peças impressas: cabeça, corpo, pernas e pés)  
+    \item Bateria 9V  
+    \item Ferramentas 
+\end{itemize}
+\hspace{0,5cm} \\ \section{DESENVOLVIMENTO}
+ A montagem do robô Otto foi realizada em etapas, iniciando pela construção da sua estrutura física. A confecção da carcaça ocorreu no período de 15 a 22 de abril, utilizando peças previamente impressas em 3D, que compõem a cabeça, o corpo, as pernas e os pés do robô. Durante essa fase, foram acoplados os servomotores responsáveis pelos movimentos, garantindo o correto posicionamento mecânico para o funcionamento do sistema.
+
+\hspace{0,5cm} \\Após a finalização da montagem estrutural, deu-se início à etapa de programação no dia 29 de abril. Para isso, foi utilizada a plataforma Arduino IDE, na qual se selecionou a placa Arduino Nano como microcontrolador do projeto. Em seguida, foi utilizado o monitor serial para realizar a calibração dos servomotores, etapa essencial para garantir a precisão dos movimentos do robô.
+
+\hspace{0,5cm} \\Durante o processo de calibração, observou-se que os servomotores das pernas apresentaram ajustes identificados como “J” e “Z”, enquanto os servos responsáveis pelos pés foram configurados com o parâmetro “X”. Esses ajustes foram fundamentais para alinhar corretamente os movimentos e evitar desalinhamentos durante a execução das ações do robô.
+
+\hspace{0,5cm} \\Para a conexão do robô via Bluetooth, foi necessário acessar, na Arduino IDE, os diretórios de exemplos disponíveis, seguindo o caminho: Arquivos → Exemplos → OttoDIY → OttoApp. A partir disso, foi possível carregar o código correspondente, permitindo a comunicação entre o robô e dispositivos externos.
+
+\hspace{0,5cm} \\Após a etapa de programação, durante os testes de conexão via Bluetooth, o robô não executou os movimentos esperados. Inicialmente, investigou-se a possibilidade de falha na bateria, que foi substituída, porém o problema permaneceu. Após novas verificações, identificou-se que a falha estava relacionada ao tensor, que posteriormente foi ajustado, solucionando o problema e permitindo o funcionamento correto do robô.
+
+\hspace{0,5cm} \\Durante todo o processo, foram realizados testes e ajustes tanto na parte mecânica quanto na programação, a fim de assegurar o funcionamento adequado do robô Otto.
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\\section{REDES PETRI}
+
+A Rede de Petri foi utilizada para representar o funcionamento do sistema do robô Otto, demonstrando a sequência lógica das ações executadas durante sua operação. Por meio desse modelo, é possível visualizar os estados, transições e fluxos do sistema, contribuindo para uma melhor compreensão do comportamento do robô e da integração entre seus componentes.
+
+\begin{center}
+\includegraphics[width=\textwidth]{REDES PETRI.png}
+\end{center}
+
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\\section{REPOSITÓRIO GIT HUB}
+
+O projeto também foi disponibilizado em um repositório no GitHub, permitindo o armazenamento e compartilhamento dos arquivos relacionados ao desenvolvimento do robô Otto, como códigos, imagens, documentação e apresentação do projeto.
+
+\begin{center}
+\includegraphics[width=\textwidth]{git-hub.png}
+\end{center}
+
+\hspace{0,5cm} \\
+\section{RESULTADOS}
+
+Ao final do processo de montagem e programação, o robô Otto apresentou funcionamento satisfatório. Após a calibração dos servomotores, foi possível observar que os movimentos das pernas e dos pés ocorreram de forma coordenada, sem desalinhamentos significativos, graças aos ajustes realizados durante a etapa de configuração.
+
+\hspace{0,5cm} \\O robô foi capaz de executar movimentos básicos, como caminhar e realizar pequenas rotações, demonstrando o correto funcionamento dos servomotores. Além disso, o buzzer respondeu adequadamente, emitindo sinais sonoros conforme programado.
+
+\hspace{0,5cm} \\A utilização do sensor ultrassônico permitiu a detecção de obstáculos, evidenciando a integração entre os componentes eletrônicos e o sistema de programação. A conexão via Bluetooth também foi realizada com sucesso, possibilitando o controle do robô por meio de dispositivos externos.
+
+\hspace{0,5cm} \\De modo geral, os testes realizados confirmaram que o sistema desenvolvido atendeu aos objetivos propostos, apresentando desempenho funcional e estabilidade durante sua operação.
+
+\hspace{0,5cm} \\
+\section{REGISTRO FOTOGRÁFICO}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{confecção.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{registro fotografico otto.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{montagem.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{robo.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{robo otto.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{componentes.jpeg}
+    \caption{Componentes}
+    \label{fig:placeholder}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{chassi otto.jpeg}
+    \caption{Montagem robô otto}
+    \label{fig:placeholder}
+\end{figure}
+
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\
+\clearpage
+\section{CONCLUSÃO}
+Conclui-se que a montagem e programação do robô Otto foram realizadas com êxito, atingindo os objetivos propostos no início do trabalho. A atividade possibilitou a aplicação prática de conhecimentos relacionados à eletrônica, programação e montagem de sistemas robóticos.
+
+
+\hspace{0,5cm} \\Durante o desenvolvimento do projeto, foi possível compreender o funcionamento dos componentes utilizados, bem como a importância da calibração dos servomotores para garantir a precisão dos movimentos. Além disso, a utilização da plataforma Arduino IDE contribuiu para o desenvolvimento de habilidades em programação e lógica computacional.
+
+
+\hspace{0,5cm} \\Os resultados obtidos demonstraram que o robô apresentou bom desempenho, sendo capaz de executar movimentos, emitir sons e estabelecer comunicação via Bluetooth, evidenciando a integração eficiente entre hardware e software.
+
+
+\hspace{0,5cm} \\Por fim, a realização deste projeto contribuiu significativamente para o aprendizado dos envolvidos, estimulando o raciocínio lógico, a resolução de problemas e o interesse pela área de robótica e tecnologia.
+
+\hspace{0,5cm} \\
+\section{REFERÊNCIAS}
+
+\footnotesize
+
+ELETROGATE.
+\textit{Apostila de montagem do robô Otto}.
+Disponível em: \url{https://www.eletrogate.com}.
+Acesso em: 08 maio 2026.
+
+\hspace{0,5cm} \\YOUTUBE.
+\textit{Git hub com vscode}.
+Disponível em: \url{https://www.youtube.com/watch?v=3-3gGSrWd00}.
+Acesso em: 08 maio 2026.
+
+
+\hspace{0,5cm} \\
+UNIROBÓTICA.
+\textit{Instruções}.
+Disponível em: \url{https://unirobotica.com.br/}.
+Acesso em: 08 maio 2026.
+
+\end{document}
