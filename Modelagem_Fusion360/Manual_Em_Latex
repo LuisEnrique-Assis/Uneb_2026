@@ -1,0 +1,264 @@
+%%%% PREÂMBULO %%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper]{article} %tamanho da fonte 12pts, papel A4 e duas coluna (twocolumn).
+\usepackage[brazil]{babel} %traduz o documento para o português do Brasil.
+\usepackage[utf8]{inputenc} %pacote reconhece acentuação em português
+\usepackage[left=3cm,top=2cm,right=1.5cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{gensymb}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{minted}
+\usepackage{textcomp,gensymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{gensymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{textcomp,gensymb}
+\usepackage{listings}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+%%%%%%% CORPO DO TRABALHO  %%%%%%%
+
+\begin{document}
+\begin{titlepage}
+	
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.9]{Figuras/logouneb.png}
+	\label{logouneb}
+\end{figure}
+
+\begin{center} 
+	\textbf{UNIVERSIDADE DO ESTADO DA BAHIA - UNEB\\
+		DEPARTAMENTO DE CIÊNCIAS EXATAS E DA TERRA
+		I}\\\vspace{6cm}
+	\textbf{MANUAL OTTO GUINDASTE}\\\vspace{4cm} %especificar melhor o título
+    
+\hfill
+\begin{minipage}{8cm}
+Manual apresentado a UNEB Para obtenção de nota na disciplina Informática Aplicada à Produção.
+\end{minipage}
+	
+	\begin{flushleft}
+		\textbf{Discentes:} Manuela Nascimento, Fábio Braga, Lucas Santos, Luís Damasceno\\
+            {Orientador:} Prof° Dr° Robson Marinho
+		
+		\vspace{5cm}
+		
+	\end{flushleft}
+	Salvador\\
+	2026
+\end{center}
+\end{titlepage}
+
+\newpage %Leva a introdução para uma nova página
+\tableofcontents
+\newpage
+\section{INTRODUÇÃO}
+Este manual foi elaborado com o objetivo de descrever a montagem mecânica e eletrônica do Guindaste com Gancho Adaptado ao Otto DIY, utilizando dois servomotores SG90 e sensor ultrassônico HC-SR04. 
+\hspace{0,5cm} \\
+\hspace{0,5cm} \\
+\section{VISÃO GERAL DO PROJETO}
+O Guindaste Adaptado ao Otto DIY é um robô educacional composto por:
+\hspace{0,5cm} \\
+\begin{itemize}
+    \item Estrutura baseada no Otto DIY;
+    \item Base rotativa para movimentação do braço;
+    \item Braço de guindaste;
+    \item Sistema de guincho com carretel e gancho;
+    \item Sensor ultrassônico frontal HC-SR04;
+    \item Controle por Arduino Nano;
+    \item Alimentação externa de 5V.
+\end{itemize}
+\hspace{0,5cm} \\ O sistema é capaz de localizar objetos, posicionar o braço do guindaste e realizar a elevação de pequenas cargas.
+
+\hspace{0,5cm} \\
+\section{LISTA DE COMPONENTES}
+\subsection{ELETRÔNICA}
+\begin{itemize}
+    \item Arduino Nano
+    \item Sensor ultrassônico HC-SR04
+    \item Fonte externa 5V / 2A
+    \item Cabos jumper
+    \item Protoboard ou Shield para Nano (opcional)
+\end{itemize}
+\subsection{ATUADORES}
+\begin{itemize}
+    \item 2 × Servomotores SG90
+\end{itemize}
+Servo 1:
+\begin{itemize}
+    \item Rotação da base do guindaste
+\end{itemize}
+Servo 2:
+\begin{itemize}
+    \item Acionamento do guincho
+\end{itemize}
+\subsection{FIXAÇÃO E FERRAMENTAS}
+\begin{itemize}
+    \item Parafusos M2 ou equivalentes
+    \item Porcas de fixação
+    \item Chave Phillips
+    \item Alicate de corte
+    \item Abraçadeiras plásticas
+\end{itemize}
+\subsection{PEÇAS IMPRESSAS}
+\begin{itemize}
+    \item Base rotativa = diametro 28mm / largura 15mm / extrusão 20mm
+    \item Braço do guindaste = extrusão 20mm / comprimento 110mm/ furo 5mm
+    \item Suporte do Servo 2 = 35x30 mm / furo 5mm / extrusão 20mm
+    \item Carretel = Diâmetro externo 20mm / furo central passante de 5 mm / extrusão 11mm
+    \item Gancho = furo 5mm / altura 25mm / estruão 10mm
+\end{itemize}
+
+
+\hspace{0,5cm} \\ \section{PREPARAÇÃO DOS SERVOS}
+Antes da montagem:
+\begin{enumerate}
+    \item Conecte os servos ao Arduino.
+    \item Execute um programa de centralização.
+    \item Posicione os servos em 90°.
+    \item Desligue a alimentação.
+    \item Somente após a centralização realize a montagem.
+\end{enumerate}
+\hspace{0,5cm}\\ Nunca force o eixo do servo manualmente.
+
+\hspace{0,5cm} \\\section{MONTAGEM DA BASE ROTATIVA}
+\begin{enumerate}
+    \item Posicione a base rotativa sobre a parte superior do Otto DIY.
+    \item Alinhe os furos de fixação.
+    \item Fixe utilizando parafusos adequados.
+    \item Verifique se a peça gira livremente.
+\end{enumerate}
+
+\hspace{0,5cm} \\
+\section{INSTALAÇÃO DO SERVO 1 (BASE)}
+\begin{enumerate}
+    \item Instale o Servo 1 no topo da estrutura do Otto DIY para acionar o sistema de rotação.
+    \item Encaixe a Base Rotativa diretamente sobre o eixo estriado do Servo 1.
+    \item Fixe a peça utilizando o parafuso central do servo para garantir que a rotação fique firme e nivelada.
+\end{enumerate}
+\hspace{0,5cm} \\ O Servo 1 será o responsável pelo movimento de rotação (azimutal) para a esquerda e para a direita de todo o conjunto do guindaste.
+
+\section{MONTAGEM DO BRAÇO DO GUINDASTE}
+\begin{enumerate}
+    \item Encaixe o braço no eixo do Servo 1.
+    \item Utilize o parafuso central do servo para fixação.
+    \item Certifique-se de que o braço esteja alinhado.
+\end{enumerate}
+\hspace{0,5cm} \\ O braço acompanhará todos os movimentos do Servo 1.
+
+\section{CARRETEL}
+\begin{itemize}
+    \item Encaixe o Carretel diretamente no eixo do Servo 2 (dentro do suporte)
+    \item Alinhe o furo de $5\text{ mm}$ da base do Braço do Guindaste com o ponto de articulação lateral do suporte.
+    \item Passe um pino ou parafuso guia pelo furo para prender o braço, validando o ângulo operacional projetado.
+\end{itemize}
+\hspace{0,5cm} \\ O Servo 2 será responsável exclusivamente por girar o carretel para enrolar e desenrolar o cabo de nylon, que será guiado ao longo do braço.
+
+\section{INSTALAÇÃO DO SUPORTE DO GUINCHO}
+\begin{enumerate}
+    \item Posicione o suporte na extremidade do braço.
+    \item Fixe com parafusos.
+    \item Verifique a rigidez da estrutura.
+\end{enumerate}
+\hspace{0,5cm} \\ O suporte funcionará como a torre estrutural fixa que sustentará o braço e o motor do guincho.
+
+\section{INSTALAÇÃO DO GANCHO}
+\begin{enumerate}
+    \item Amarre uma linha de nylon ao carretel.
+    \item Passe o fio livremente para baixo.
+    \item Fixe o gancho na extremidade.
+\end{enumerate}
+\hspace{0,5cm} \\ Verifique se o fio enrola corretamente sem escapar do carretel.
+
+\section{INSTALAÇÃO DA ELETRÔNICA}
+\subsection{ARDUINO NANO}
+\begin{enumerate}
+    \item Fixe o Arduino no interior da estrutura.
+    \item Organize os cabos para evitar interferências mecânicas.
+\end{enumerate}
+
+\subsection{ALIMENTAÇÃO}
+\begin{enumerate}
+    \item Conecte a fonte externa de 5V.
+     \item Alimente os servos diretamente pela fonte.
+      \item Conecte todos os GNDs em comum.
+\end{enumerate}
+
+\subsection{CONEXÕES}
+\begin{itemize}
+    \item Servo 1 → canal de rotação da base
+    \item Servo 2 → canal do guincho
+    \item HC-SR04 → leitura de distância
+\end{itemize}
+
+\section{SENSOR ULTRASSÔNICO}
+\begin{enumerate}
+    \item Instale o HC-SR04 na parte frontal do Otto DIY.
+    \item Alinhe o sensor para frente.
+    \item Conecte os pinos:
+\end{enumerate}
+\begin{itemize}
+    \item VCC
+     \item TRIG
+      \item ECHO
+       \item GND
+\end{itemize}
+\hspace{0,5cm} \\ O sensor será responsável pela medição da distância até o objeto.
+
+\section{FECHAMENTO DO SISTEMA}
+\begin{enumerate}
+    \item Organize toda a fiação interna.
+    \item Verifique possíveis interferências com os servos.
+    \item Fixe as tampas da estrutura.
+    \item Realize uma inspeção visual completa.
+\end{enumerate}
+
+\section{TESTES FINAIS}
+\begin{itemize}
+    \item Teste a rotação da base.
+    \item Teste o enrolamento do carretel.
+    \item Teste a descida do gancho.
+    \item Teste a subida do gancho.
+    \item Teste o sensor ultrassônico.
+    \item Verifique a estabilidade da estrutura.
+\end{itemize}
+\hspace{0,5cm} \\ Se algum movimento estiver incorreto, revise a centralização dos servos.
+
+\section{ESPECIFICAÇÕES TÉCNICAS}
+\begin{itemize}
+    \item Altura do Otto DIY: 11 a 12 cm
+    \item Alcance horizontal do braço: aproximadamente 11 cm
+    \item Altura máxima do gancho: aproximadamente 10 cm
+    \item Servos utilizados: 2 × SG90
+    \item Sensor utilizado: HC-SR04
+    \item Alimentação: 5V
+    \item Corrente recomendada: 2A
+    \item Carga máxima recomendada: 30 g
+    \item Material recomendado para impressão: PLA
+\end{itemize}
+
+\section{CONCLUSÃO}
+O Guindaste com Gancho Adaptado ao Otto DIY foi completamente montado, integrando sistema mecânico, eletrônica embarcada e sensor ultrassônico.
+
+\hspace{0,5cm} \\O projeto está pronto para programação, testes e demonstrações em atividades acadêmicas de robótica, automação e engenharia.
+\end{document}
