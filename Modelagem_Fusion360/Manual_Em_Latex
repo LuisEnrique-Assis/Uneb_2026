@@ -114,7 +114,7 @@ Servo 2:
 \end{itemize}
 \subsection{FIXAÇÃO E FERRAMENTAS}
 \begin{itemize}
-    \item Parafusos M2 ou equivalentes
+    \item Parafusos M5x22 e M5x12
     \item Porcas de fixação
     \item Chave Phillips
     \item Alicate de corte
@@ -145,6 +145,7 @@ Antes da montagem:
 \begin{enumerate}
     \item Posicione a base rotativa sobre a parte superior do Otto DIY.
     \item Alinhe os furos de fixação.
+    \item Usar a Cruzeta e Parafusos do kit servo
     \item Fixe utilizando parafusos adequados.
     \item Verifique se a peça gira livremente.
 \end{enumerate}
