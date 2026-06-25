@@ -1,0 +1,197 @@
+#include <Servo.h>
+
+// Definição dos pinos existentes
+#define PIN_TRIG   9
+#define PIN_ECHO   10
+#define PIN_BUZZER 8
+#define PIN_LED    13
+#define PIN_SERVO1 5 
+#define PIN_SERVO2 6 
+
+// NOVOS PINOS PARA OS SERVOS DAS PERNAS E PÉS
+#define PIN_PERNA_ESQ 3
+#define PIN_PERNA_DIR 4
+#define PIN_PE_ESQ    11
+#define PIN_PE_DIR    12
+
+Servo servoAlinhamento; 
+Servo servoGancho;      
+
+// Novos objetos para os servos dos membros
+Servo servoPernaEsq;
+Servo servoPernaDir;
+Servo servoPeEsq;
+Servo servoPeDir;
+
+long duracao;
+float distancia;
+
+// DEFINIÇÃO DOS ESTADOS DA REDE DE PETRI
+enum Estados {
+  PATRULHAMENTO,
+  ALINHAR,
+  BAIXAR_GANCHO,
+  CONFIRMAR_ENGATE,
+  LEVANTAR_CARGA,
+  INICIAR_TRANSPORTE,
+  CHEGOU
+};
+
+Estados estadoAtual = PATRULHAMENTO; 
+bool avoidAtivado = true;            
+
+// Função auxiliar para calcular a distância
+void calcularDistancia() {
+  digitalWrite(PIN_TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(PIN_TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PIN_TRIG, LOW);
+
+  duracao = pulseIn(PIN_ECHO, HIGH, 30000); 
+  distancia = duracao * 0.034 / 2;
+
+  Serial.print("Distancia Atual: ");
+  Serial.print(distancia);
+  Serial.println(" cm");
+}
+
+// FUNÇÃO AUXILIAR DE MOVIMENTAÇÃO (Exemplo de passo simples)
+void executarPasso() {
+  // Movimento simulado de caminhada alternando ângulos
+  servoPernaEsq.write(70); servoPernaDir.write(110);
+  servoPeEsq.write(80);    servoPeDir.write(100);
+  delay(150);
+  servoPernaEsq.write(110); servoPernaDir.write(70);
+  servoPeEsq.write(100);    servoPeDir.write(80);
+  delay(150);
+}
+
+// FUNÇÃO AUXILIAR PARA PARAR AS PERNAS/PÉS
+void pararMembros() {
+  servoPernaEsq.write(90); // 90 graus costuma ser a posição central/neutra
+  servoPernaDir.write(90);
+  servoPeEsq.write(90);
+  servoPeDir.write(90);
+}
+
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(PIN_TRIG, OUTPUT);
+  pinMode(PIN_ECHO, INPUT);
+  pinMode(PIN_BUZZER, OUTPUT);
+  pinMode(PIN_LED, OUTPUT); 
+
+  // Inicializando servos antigos
+  servoAlinhamento.attach(PIN_SERVO1);
+  servoGancho.attach(PIN_SERVO2);
+  servoAlinhamento.write(0);
+  servoGancho.write(0);
+
+  // INICIALIZANDO OS NOVOS SERVOS
+  servoPernaEsq.attach(PIN_PERNA_ESQ);
+  servoPernaDir.attach(PIN_PERNA_DIR);
+  servoPeEsq.attach(PIN_PE_ESQ);
+  servoPeDir.attach(PIN_PE_DIR);
+  
+  pararMembros(); // Começa com as pernas em posição neutra
+
+  Serial.println("--- Sistema Pronto: Inicializado com 6 Servos ---");
+}
+
+void loop() {
+  calcularDistancia();
+
+  switch (estadoAtual) {
+
+    case PATRULHAMENTO:
+      Serial.println("Estado: Patrulhamento [Avoid Ativado]");
+      avoidAtivado = true;
+      servoAlinhamento.write(0); 
+
+      // Robô caminha enquanto patrulha
+      executarPasso();
+
+      if (distancia > 0 && distancia < 7) { 
+        Serial.println(">> Objeto Detectado (< 7cm)! Mudando para Alinhar.");
+        tone(PIN_BUZZER, 1000, 200); 
+        pararMembros(); // Para de andar para interagir com o objeto
+        estadoAtual = ALINHAR;
+      }
+      break;
+
+    case ALINHAR:
+      Serial.println("Estado: Alinhando Servo...");
+      servoAlinhamento.write(90); 
+      delay(1000);                
+      estadoAtual = BAIXAR_GANCHO;
+      break;
+
+    case BAIXAR_GANCHO:
+      Serial.println("Estado: Baixando Gancho...");
+      servoGancho.write(90);      
+      delay(1000);                
+      estadoAtual = CONFIRMAR_ENGATE;
+      break;
+
+    case CONFIRMAR_ENGATE:
+      Serial.println("Estado: Confirmar Engate [Aguardando Engate]");
+      
+      if (distancia > 0 && distancia < 10) {
+        Serial.println(">> SUCESSO: Carga Presa!");
+        digitalWrite(PIN_LED, HIGH); 
+        delay(500);
+        estadoAtual = LEVANTAR_CARGA;
+      } else {
+        Serial.println(">> FALHA: Nova tentativa necessária...");
+        digitalWrite(PIN_LED, LOW);
+        tone(PIN_BUZZER, 400, 500);  
+        delay(1000);
+        estadoAtual = BAIXAR_GANCHO; 
+      }
+      break;
+
+    case LEVANTAR_CARGA:
+      Serial.println("Estado: Levantar Carga...");
+      servoGancho.write(0);        
+      delay(1000);
+      
+      Serial.println(">> Desativar Avoid.");
+      avoidAtivado = false;        
+      estadoAtual = INICIAR_TRANSPORTE;
+      break;
+
+    case INICIAR_TRANSPORTE:
+      Serial.println("Estado: Iniciar Transporte [Deslocamento]");
+      servoAlinhamento.write(30);  
+      
+      // Robô caminha transportando a carga (2 repetições para simular o tempo de 2s)
+      for(int i = 0; i < 6; i++) {
+        executarPasso();
+      }
+                 
+      pararMembros(); // Para ao chegar
+      estadoAtual = CHEGOU;
+      break;
+
+    case CHEGOU:
+      Serial.println("Estado: CHEGOU ao destino!");
+      servoAlinhamento.write(0); 
+      
+      Serial.println("-> Baixando carga no destino...");
+      servoGancho.write(90); 
+      delay(1000);
+      
+      Serial.println("-> Liberando Gancho...");
+      servoGancho.write(0); 
+      delay(1000);
+
+      Serial.println("-> Reativando Avoid. Retornando ao Patrulhamento...\n");
+      avoidAtivado = true;
+      estadoAtual = PATRULHAMENTO;
+      break;
+  }
+
+  delay(200); 
+}
